@@ -1,0 +1,54 @@
+@import '../scss/variables.scss';
+@import '../scss/mixins.scss';
+// @import "../scss/fonts.scss";
+// @import "../scss/reset.scss";
+
+.mainContainer {
+  background: linear-gradient(
+    to bottom,
+    $mainThemeFirstColor 50%,
+    $mainThemeSecondColor 50%
+  );
+  width: 100wv;
+  height: 100vh;
+  padding: 50px 20px;
+  margin: 0;
+
+  &Content {
+    max-width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: $contentBackgroundColor;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.slogan {
+  position: absolute;
+  display: inline-block;
+  text-align: center;
+  top: 100px;
+  left: 100px;
+  color: $headersTextColor;
+  @include font($mainFontFamily, 900, 32px, 1.5);
+  text-transform: uppercase;
+}
+
+.terracoatCoat,
+.olivePants {
+  position: absolute;
+  transform: translateY(-50%);
+
+  top: 50%;
+}
+
+.terracoatCoat {
+  left: 0;
+  width: 300px;
+}
+
+.olivePants {
+  right: 0;
+  width: 400px;
+}

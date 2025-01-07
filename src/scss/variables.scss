@@ -1,7 +1,9 @@
+@import "./fonts.scss";
+
 // ------------------------------colors---------------------------
 $mainThemeFirstColor: #bfa58c;
 $mainThemeSecondColor: #a8b2a7;
-$contentBackgroundColor: #e5e6d8;
+$contentBackgroundColor: #d8d0bd;
 
 $headersTextColor: #83675b;
 $mainTextColor: #2c3738;
@@ -10,3 +12,8 @@ $secondaryTextColor: #9b9585;
 $buttonColor: #e4d9c7;
 $buttonHoverColor: #9e998b;
 $buttonTextColor: #9b9585;
+
+
+// ------------------------------fonts---------------------------
+$mainFontFamily: 'Oswald';
+$secondFontFamily: 'Roboto';
