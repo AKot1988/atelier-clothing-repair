@@ -15,7 +15,7 @@
   margin: 0;
 
   &Content {
-    max-width: 1280px;
+    max-width: 1080px;
     height: 100%;
     margin: 0 auto;
     background-color: $contentBackgroundColor;
@@ -29,7 +29,7 @@
   display: inline-block;
   text-align: center;
   top: 100px;
-  left: 100px;
+  left: 50px;
   color: $headersTextColor;
   @include font($mainFontFamily, 900, 32px, 1.5);
   text-transform: uppercase;
@@ -39,16 +39,17 @@
 .olivePants {
   position: absolute;
   transform: translateY(-50%);
-
+  width: 250px;
   top: 50%;
 }
 
 .terracoatCoat {
   left: 0;
-  width: 300px;
 }
 
 .olivePants {
   right: 0;
-  width: 400px;
+  margin-right: 20px;
 }
+
+
