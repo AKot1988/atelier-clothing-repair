@@ -6,7 +6,7 @@ import classes from './HomePage.module.scss';
 export default function Home({ content }: HomeProps) {
   return (
     <div className={classes.homePageContent}>        
-      <p>контент хоуму</p>;
+      <p>контент хоуму</p>
     </div>
   );
 }
