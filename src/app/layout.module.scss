@@ -11,7 +11,7 @@
   );
   width: 100wv;
   height: 100vh;
-  padding: 50px 20px;
+  padding: 30px 20px;
   margin: 0;
 
   &Content {
@@ -35,6 +35,7 @@
   color: $headersTextColor;
   @include font($mainFontFamily, 900, 32px, 1.5);
   text-transform: uppercase;
+  text-shadow: $mainTextShadowHiContrast;
 }
 
 .terracoatCoat,
@@ -53,5 +54,3 @@
   right: 0;
   margin-right: 20px;
 }
-
-

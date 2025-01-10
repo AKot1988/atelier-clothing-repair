@@ -1,12 +1,13 @@
-import { div } from 'framer-motion/client';
+
 import { HomeProps } from './helper';
-// import {Header}
+import {Header} from '../components';
+import {headerProps} from '@/components/Header/helper';
 import classes from './HomePage.module.scss';
 
-export default function Home({ content }: HomeProps) {
+export default function Home() {
   return (
     <div className={classes.homePageContent}>        
-      <p>контент хоуму</p>
+      <Header data={headerProps.authorizedUser} />
     </div>
   );
 }

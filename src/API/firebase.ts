@@ -1,6 +1,6 @@
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, RecaptchaVerifier } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAKutrkgTz3FJ-P7pUqLOBW_4Kknf6LvJs',
@@ -18,3 +18,19 @@ export const db = getFirestore(app);
 
 //initialize auth
 export const auth = getAuth(app);
+
+declare global {
+  interface Window {
+    recaptchaVerifier: import("firebase/auth").RecaptchaVerifier;
+  }
+}
+
+
+auth.useDeviceLanguage();
+window.recaptchaVerifier = new RecaptchaVerifier(auth, 'sign-in-button', {
+  'size': 'invisible',
+  'callback': (response) => {
+    // reCAPTCHA solved, allow signInWithPhoneNumber.
+    onSignInSubmit();
+  }
+});
