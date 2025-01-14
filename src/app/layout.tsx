@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Providers } from '@/components/';
 import { AnimatedPNG, Header, Footer } from '@/components';
 import { CoatPNGProps, JeansPNGProps } from '@/app/helper';
 import './globals.css';
@@ -13,28 +14,29 @@ const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) =>{
+}>) => {
   return (
     <html lang="en">
-      <body>
-        <div className={classes.mainContainer}>
-          <picture className={classes.slogan}>
-            ремонт одягу <br />
-            ательє
-            <br />
-            'МАЙСТЕР КЛАС'
-          </picture>
-          <AnimatedPNG {...CoatPNGProps} className={classes.terracoatCoat}/>
-          <AnimatedPNG {...JeansPNGProps} className={classes.blueJeans}/>
-          <div className={classes.mainContainerContent} id="content">
-            <Header />
-            {children}
-            <Footer />
+      <Providers>
+        <body>
+          <div className={classes.mainContainer}>
+            <picture className={classes.slogan}>
+              ремонт одягу <br />
+              ательє
+              <br />
+              'МАЙСТЕР КЛАС'
+            </picture>
+            <AnimatedPNG {...CoatPNGProps} className={classes.terracoatCoat} />
+            <AnimatedPNG {...JeansPNGProps} className={classes.blueJeans} />
+            <div className={classes.mainContainerContent} id="content">
+              {children}
+              <Footer />
+            </div>
           </div>
-        </div>
-      </body>
+        </body>
+      </Providers>
     </html>
   );
-}
+};
 
 export default RootLayout;

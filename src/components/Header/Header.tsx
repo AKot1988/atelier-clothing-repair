@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import { FC, useEffect } from 'react';
 import { CustomLink } from '../index';
 import { HeaderProps } from './helper';
