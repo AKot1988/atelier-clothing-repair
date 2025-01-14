@@ -1,5 +1,3 @@
-
-import { HomeProps } from './helper';
 import {Header} from '../components';
 import {headerProps} from '@/components/Header/helper';
 import classes from './HomePage.module.scss';

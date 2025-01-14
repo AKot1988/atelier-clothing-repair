@@ -24,6 +24,7 @@
       font-weight: 500;
       color: $headersTextColor;
       transition: color 0.3s;
+      text-transform: uppercase;
 
       &:hover {
         color: $secondaryTextColor;

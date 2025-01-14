@@ -6,18 +6,17 @@ const CustomLink: FC<CustomLinkProps> = ({
   title,
   path,
   className,
-  onClick,
   children,
 }) => {
   return (
     <>
       {children ? (
-        <Link href={path} className={className} onClick={onClick}>
+        <Link href={path} className={className}>
           {children}
           {title}
         </Link>
       ) : (
-        <Link href={path} className={className} onClick={onClick}>
+        <Link href={path} className={className}>
           {title}
         </Link>
       )}
