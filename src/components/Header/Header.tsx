@@ -2,6 +2,7 @@
 import { FC, useEffect } from 'react';
 import { CustomLink } from '../index';
 import { HeaderProps } from './helper';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { CustomLinkProps } from '@/components/CustomLink/helper';
 import classes from './Header.module.scss';
 import Link from 'next/link';

@@ -20,12 +20,12 @@ const RootLayout = ({
       <Providers>
         <body>
           <div className={classes.mainContainer}>
-            <picture className={classes.slogan}>
+            <p className={classes.slogan}>
               ремонт одягу <br />
               ательє
               <br />
               'МАЙСТЕР КЛАС'
-            </picture>
+            </p>
             <AnimatedPNG {...CoatPNGProps} className={classes.terracoatCoat} />
             <AnimatedPNG {...JeansPNGProps} className={classes.blueJeans} />
             <div className={classes.mainContainerContent} id="content">

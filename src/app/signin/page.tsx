@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 const SignInPage: FC = () => {
   return (
-    <div>
+    <>
       <h1>Sign In</h1>
-      <button>Sign in with Google</button>
-    </div>
+      <p>This is my own signIn page</p>
+    </>
   );
 };
 
