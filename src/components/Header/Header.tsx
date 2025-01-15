@@ -1,20 +1,20 @@
 'use client';
 import { FC, useEffect } from 'react';
 import { CustomLink } from '../index';
-import { HeaderProps } from './helper';
+// import { HeaderProps } from './helper';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { headerProps, HeaderProps } from '@/components/Header/helper';
 import { CustomLinkProps } from '@/components/CustomLink/helper';
 import classes from './Header.module.scss';
-import Link from 'next/link';
 
-const Header: FC<HeaderProps> = ({ data }) => {
-  if (!data) {
-    // Очікуємо дані, якщо вони ще не завантажені
-    return null;
-  }
-  if (!Array.isArray(data)) {
-    console.error('Header: data не є масивом:', data);
-    return null;
+const Header: FC = () => {
+  const session = useSession();
+
+  let headerPropsStated: CustomLinkProps[] = [];
+  if (session.data === null) {
+    headerPropsStated = headerProps.unauthorizedUser;
+  } else {
+    headerPropsStated = headerProps.authorizedUser;
   }
   return (
     <header className={classes.header}>
@@ -23,15 +23,28 @@ const Header: FC<HeaderProps> = ({ data }) => {
         alt="Логотип"
         className={classes.headerLogo}
       />
-      <div className={classes.headerNavBar}>
-        {data.map((linkData) => (
-          <CustomLink
-            key={linkData.path} // Використання `path` як унікального ключа
-            title={linkData.title}
-            path={linkData.path}
-            className={classes.headerNavBarLink}
-          />
-        ))}
+      <div className={classes.headerNavAuthSection}>
+        <div className={classes.headerNavBar}>
+          {headerPropsStated.map((linkData) => (
+            <CustomLink
+              key={linkData.path}
+              title={linkData.title}
+              path={linkData.path}
+              className={classes.headerNavBarLink}
+            />
+          ))}
+        </div>
+        {session === null || session.status === 'unauthenticated' ? (
+          <button className={classes.headerAuthButton} onClick={() => signIn()}>
+            Увійти
+          </button>
+        ) : (
+          <button
+            className={classes.headerAuthButton}
+            onClick={() => signOut()}>
+            Вийти
+          </button>
+        )}
       </div>
     </header>
   );

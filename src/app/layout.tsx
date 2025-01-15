@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Providers } from '@/components/';
+// import { headerProps, HeaderProps } from '@/components/Header/helper';
+// import { signIn, signOut, useSession } from 'next-auth/react';
 import { AnimatedPNG, Header, Footer } from '@/components';
 import { CoatPNGProps, JeansPNGProps } from '@/app/helper';
+import { useSession } from 'next-auth/react';
 import './globals.css';
 import classes from './layout.module.scss';
 
@@ -15,6 +18,9 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+
+
+
   return (
     <html lang="en">
       <Providers>
@@ -29,6 +35,7 @@ const RootLayout = ({
             <AnimatedPNG {...CoatPNGProps} className={classes.terracoatCoat} />
             <AnimatedPNG {...JeansPNGProps} className={classes.blueJeans} />
             <div className={classes.mainContainerContent} id="content">
+              <Header/>
               {children}
               <Footer />
             </div>

@@ -1,6 +1,6 @@
-@import "../../scss/variables.scss";
-@import "../../scss/mixins.scss";
-@import "../../scss/fonts.scss";
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
+@import '../../scss/fonts.scss';
 
 .header {
   width: 100%;
@@ -11,6 +11,11 @@
 
   &Logo {
     width: 100px;
+  }
+
+  &NavAuthSection {
+    display: flex;
+    gap: 10px;
   }
 
   &NavBar {
@@ -30,5 +35,15 @@
         color: $secondaryTextColor;
       }
     }
+  }
+
+  &AuthButton {
+    @include font($mainFontFamily, 700, 1rem, 1);
+    align-self: start;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $mainThemeSecondColor;
+    transition: color 0.3s;
+    text-transform: uppercase;
   }
 }
