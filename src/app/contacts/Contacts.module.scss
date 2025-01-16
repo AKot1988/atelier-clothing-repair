@@ -1,0 +1,32 @@
+@import '@/scss/variables.scss';
+@import '@/scss/mixins.scss';
+
+.contactsPage {
+  height: 100%;
+  display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+  
+    &Header {
+      @include font($mainFontFamily, 700, 2rem, 1);
+      color: $headersTextColor;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+}
+.embededMapContainer {
+  width: 100%;
+  height: calc(50% - 10px);
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+}
+
+.embededMap {
+  border-radius: 10px;
+  margin: auto;
+  width: 95%;
+  height: 95%;
+  box-shadow: $mainTextShadowLowContrast;
+}

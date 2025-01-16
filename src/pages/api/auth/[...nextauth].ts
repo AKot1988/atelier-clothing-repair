@@ -13,8 +13,8 @@ export const authOptions= {
     // CredentialsProvider({}),
     // // ...add more providers here
   ],
-  // pages: {
-  //   signIn: '/signin',
-  // }
+  pages: {
+    signIn: '/signin',
+  }
 };
 export default NextAuth(authOptions);

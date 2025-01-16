@@ -36,7 +36,9 @@ const RootLayout = ({
             <AnimatedPNG {...JeansPNGProps} className={classes.blueJeans} />
             <div className={classes.mainContainerContent} id="content">
               <Header/>
+              <div className={classes.layoutChildren}>
               {children}
+              </div>
               <Footer />
             </div>
           </div>

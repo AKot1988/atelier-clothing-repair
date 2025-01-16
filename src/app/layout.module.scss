@@ -26,6 +26,10 @@
   }
 }
 
+.layoutChildren {
+  flex-grow: 1;
+}
+
 .slogan {
   position: absolute;
   display: inline-block;

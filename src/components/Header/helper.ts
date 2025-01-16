@@ -1,7 +1,7 @@
 import { CustomLinkProps } from '@/components/CustomLink/helper';
 
 export type HeaderProps = {
-  data: CustomLinkProps[];
+  [k: string]: CustomLinkProps[];
 };
 
 export const headerProps = {
