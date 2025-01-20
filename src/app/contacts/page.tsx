@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { SVG } from '../../../public/SVGs';
+import { map } from '../../api/mapBox/mapBox';
 import classes from './Contacts.module.scss';
 
 const SignInPage: FC = () => {
@@ -21,3 +22,18 @@ const SignInPage: FC = () => {
 };
 
 export default SignInPage;
+
+// const SignInPage: FC = () => {
+//   return (
+//     <div className={classes.contactsPage}>
+//       <div className={classes.embededMapContainer} id="map"></div>
+//       <p className={classes.contactsPageHeader}>Контакти</p>
+//       <a href="tel:+380938872353">
+//         {SVG.PHONE}
+//         +380 93 887 2353
+//       </a>
+//     </div>
+//   );
+// };
+
+// export default SignInPage;
