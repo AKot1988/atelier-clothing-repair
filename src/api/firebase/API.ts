@@ -24,11 +24,12 @@ export const getOrdersList = async () => {
   return orders;
 };
 
-const createUserEmailSndPassword = ({email, password}: userCredentialsEmail) => {
-  createUserWithEmailAndPassword(auth, email, password)
+export const createUserEmailAndPassword = async ({email, password}: userCredentialsEmail) => {
+  await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed up
       const user = userCredential.user;
+      return user;
       // ...
     })
     .catch((error) => {
@@ -38,16 +39,21 @@ const createUserEmailSndPassword = ({email, password}: userCredentialsEmail) => 
     });
 };
 
-const signInUserEmailAndPassword = ({email, password}: userCredentialsEmail) => {
-  signInWithEmailAndPassword(auth, email, password)
+export const logInUserEmailAndPassword = async ({email, password}: userCredentialsEmail) => {
+  await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      console.log('SIGN IN WITH signInWithEmailAndPassword SUCCESS');
+      console.log(user);
+      return user;
       // ...
     })
     .catch((error) => {
+      const user = null;
       const errorCode = error.code;
       const errorMessage = error.message;
+      return user;
     });
 };
 onAuthStateChanged(auth, (user) => {

@@ -1,4 +1,5 @@
 import { InputElementProps } from '../Input/type';
+import type { FormEventHandler } from 'react';
 
 
 export enum Method {
@@ -16,7 +17,7 @@ export type FormProps = {
    button: 
       {
          text: string;
-         clickHandler?: () => void;
+         clickHandler?: (() => void) | FormEventHandler<HTMLFormElement>;
       },
    // redirect?: COMMON_ROUTES | AUTH_USER_ROUTES | ADMIN_ROUTES;
 }

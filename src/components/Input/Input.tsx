@@ -2,6 +2,7 @@
 
 import { FC, useState, useEffect } from 'react';
 import { InputType, InputElementProps } from './type';
+import type {SetStateAction} from 'react';
 import classes from './Input.module.scss';
 
 const Input: FC<InputElementProps> = ({
@@ -19,20 +20,20 @@ const Input: FC<InputElementProps> = ({
 }:        
 InputElementProps) => {
   const [errorMessage, setErrorMessage] = useState<string | null | undefined>(
-    null
+    ''
   );
-  const [valueData, setValueData] = useState<string | number | undefined>('');
+  const [valueData, setValueData] = useState<SetStateAction<string | number | undefined | Date>>('');
 
   const handleOnChange = async (e: React.FormEvent<HTMLInputElement>) => {
     let newValue: string | undefined;
     switch (type) {
-      case InputType.FILE: {
-        if (!imagePurpose) {
-          throw new Error('imagePurpose is required for file input');
-        }
-        newValue = await onChange(e);
-        break;
-      }
+      // case InputType.FILE: {
+      //   if (!imagePurpose) {
+      //     throw new Error('imagePurpose is required for file input');
+      //   }
+      //   newValue = await onChange(e);
+      //   break;
+      // }
       case InputType.DATEPICKER: {
         newValue = value as string;
         break;
@@ -53,7 +54,7 @@ InputElementProps) => {
   };
 
   useEffect(() => {
-    setValueData(value as string);
+    setValueData(value ?? ''); // Використовуйте nullish coalescing для дефолтного значення
   }, [value]);
 
   switch (type) {

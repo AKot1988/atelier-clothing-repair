@@ -19,18 +19,18 @@ export const db = getFirestore(app);
 //initialize auth
 export const auth = getAuth(app);
 
-declare global {
-  interface Window {
-    recaptchaVerifier: import("firebase/auth").RecaptchaVerifier;
-  }
-}
+// declare global {
+//   interface Window {
+//     recaptchaVerifier: import("firebase/auth").RecaptchaVerifier;
+//   }
+// }
 
 
-auth.useDeviceLanguage();
-window.recaptchaVerifier = new RecaptchaVerifier(auth, 'sign-in-button', {
-  'size': 'invisible',
-  'callback': (response) => {
-    // reCAPTCHA solved, allow signInWithPhoneNumber.
-    onSignInSubmit();
-  }
-});
+// auth.useDeviceLanguage();
+// window.recaptchaVerifier = new RecaptchaVerifier(auth, 'sign-in-button', {
+//   'size': 'invisible',
+//   'callback': (response) => {
+//     // reCAPTCHA solved, allow signInWithPhoneNumber.
+//     onSignInSubmit();
+//   }
+// });
