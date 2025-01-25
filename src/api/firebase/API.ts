@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { db, auth } from './firebase';
-import {userCredentialsEmail} from './helper';
+import { userCredentialsEmail } from './helper';
 
 export const clientsList = collection(db, 'orderList'); //повертає посилання на колекцію
 export const orderList = collection(db, 'orderList');
@@ -24,38 +24,59 @@ export const getOrdersList = async () => {
   return orders;
 };
 
-export const createUserEmailAndPassword = async ({email, password}: userCredentialsEmail) => {
-  await createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      return user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
+// export const createUserEmailAndPassword = async ({email, password}: userCredentialsEmail) => {
+//   debugger
+//   await createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//       // Signed up
+//       console.log(userCredential)
+//       const user = userCredential.user;
+//       return user;
+//       // ...
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // ..
+//     });
+// };
+
+export const createUserEmailAndPassword = async ({
+  email,
+  password,
+}: userCredentialsEmail) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    console.log(userCredential);
+    const user = userCredential.user;
+    console.log(user);
+    return user; // Повертає користувача
+  } catch (error: any) {
+    console.error('Error creating user:', error.code, error.message);
+    throw new Error(error.message);
+  }
 };
 
-export const logInUserEmailAndPassword = async ({email, password}: userCredentialsEmail) => {
-  await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log('SIGN IN WITH signInWithEmailAndPassword SUCCESS');
-      console.log(user);
-      return user;
-      // ...
-    })
-    .catch((error) => {
-      const user = null;
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      return user;
-    });
+export const logInUserEmailAndPassword = async ({
+  email,
+  password,
+}: userCredentialsEmail) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log(user);
+    return user;
+  } catch (error) {
+    console.error('Error during signInWithEmailAndPassword:', error);
+    return null; // Якщо сталася помилка, повертаємо null
+  }
 };
+
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties

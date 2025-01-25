@@ -8,6 +8,7 @@ import { createUserEmailAndPassword } from '@/api/firebase/API';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import type { FormEventHandler } from 'react';
+import { getSession } from 'next-auth/react';
 
 import classes from './SignInPage.module.scss';
 
@@ -25,9 +26,10 @@ const SignInPage: FC = () => {
     const response = await signIn('credentials', {
       email: formData.get('email') as string,
       password: formData.get('password') as string,
+      formType: 'logIn',
       redirect: false,
     });
-
+    console.log(response);
     if (response && !response.error) {
       router.push('/profile');
     } else {
@@ -40,21 +42,37 @@ const SignInPage: FC = () => {
   ) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const user = await createUserEmailAndPassword({
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
-    });
-    router.push('/');
-    confirm('Реєстрація нового юзера успішна');
-    setIsSignInModalOpen(false);
-    return user;
+    try {
+      const credentialsData = await signIn('credentials', {
+        email: formData.get('email') as string,
+        password: formData.get('password') as string,
+        redirect: false,
+        formType: 'signIn',
+      });
+      const session = await getSession();
+      console.log('User session:', session);
+
+      if (session?.user) {
+        console.log('User info:', session.user);
+      }
+      console.log('Response from signIn:', credentialsData);
+
+      if (credentialsData && !credentialsData.error) {
+        router.push('/profile');
+        confirm('Реєстрація нового юзера успішна');
+      } else {
+        console.error('Error signing in:', credentialsData?.error);
+        alert('Не вдалося увійти. Перевірте правильність даних.');
+      }
+    } catch (error) {
+      console.error('Error during signIn process:', error);
+      alert('Сталася помилка. Спробуйте пізніше.');
+    }
   };
 
-  const logInUPDProps = { ...logInFormProps }; //з-за імутабельності треба робити тут так, не перший раз уже поптрапляю на цей прікол
-  const signInUPDProps = { ...signInFormProps };
   useEffect(() => {
-    logInUPDProps.button.clickHandler = handlerLogInSubmit;
-    signInUPDProps.button.clickHandler = handlerSignInSubmit;
+    logInFormProps.button.clickHandler = handlerLogInSubmit;
+    signInFormProps.button.clickHandler = handlerSignInSubmit;
   }, []);
 
   return (
@@ -77,13 +95,13 @@ const SignInPage: FC = () => {
         visible={isLogInModalOpen}
         setVisible={setILogInModalOpen}
         title=""
-        content={<UniversalForm data={logInUPDProps} />}
+        content={<UniversalForm data={logInFormProps} />}
       />
       <UniversalModal
         visible={isSignInModalOpen}
         setVisible={setIsSignInModalOpen}
         title=""
-        content={<UniversalForm data={signInUPDProps} />} //Тут треба навести порядок бо поки проси цієї форми - ерунда
+        content={<UniversalForm data={signInFormProps} />}
       />
     </div>
   );

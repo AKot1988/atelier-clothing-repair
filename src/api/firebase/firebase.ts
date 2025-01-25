@@ -1,36 +1,21 @@
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
-import { getAuth, RecaptchaVerifier } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAKutrkgTz3FJ-P7pUqLOBW_4Kknf6LvJs',
-  authDomain: 'atelierclothingrepair.firebaseapp.com',
-  projectId: 'atelierclothingrepair',
-  storageBucket: 'atelierclothingrepair.firebasestorage.app',
-  messagingSenderId: '432849750130',
-  appId: '1:432849750130:web:025a4d3e3fb53f98b79aeb',
-  measurementId: 'G-67C2MGHYBB',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 //initialize auth
-export const auth = getAuth(app);
 
-// declare global {
-//   interface Window {
-//     recaptchaVerifier: import("firebase/auth").RecaptchaVerifier;
-//   }
-// }
-
-
-// auth.useDeviceLanguage();
-// window.recaptchaVerifier = new RecaptchaVerifier(auth, 'sign-in-button', {
-//   'size': 'invisible',
-//   'callback': (response) => {
-//     // reCAPTCHA solved, allow signInWithPhoneNumber.
-//     onSignInSubmit();
-//   }
-// });

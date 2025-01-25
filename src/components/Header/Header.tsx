@@ -9,6 +9,7 @@ import classes from './Header.module.scss';
 
 const Header: FC = () => {
   const session = useSession();
+  console.log(session);q
 
   let headerPropsStated: CustomLinkProps[] = [];
   if (session.data === null) {
